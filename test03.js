@@ -1,10 +1,10 @@
-//用户登录
+//user log in
 
-//加载模块
+//load module
 const { SSL_OP_ALLOW_UNSAFE_LEGACY_RENEGOTIATION } = require("constants");
 var http=require("http");
 
-//创建服务器
+//Create server
 var server=http.createServer(function(request,response){
     var url=request.url;
     switch(url){
@@ -19,7 +19,7 @@ var server=http.createServer(function(request,response){
             break;
     }
 });
-//启动服务器,监听端口8888
+//strat the server and listen the port:8888
 server.listen(8888,function(){
     console.log("服务器启动，监听8888端口：");
 });
