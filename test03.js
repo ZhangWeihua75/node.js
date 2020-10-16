@@ -1,8 +1,8 @@
 //user log in
 
 //load module
-const { SSL_OP_ALLOW_UNSAFE_LEGACY_RENEGOTIATION } = require("constants");
 var http=require("http");
+var querystring=require('querystring');
 
 //Create server
 var server=http.createServer(function(request,response){
@@ -48,11 +48,21 @@ function show(request,response){
 } 
 //处理登录请求
 function login(request,response){
+     response.writeHead(200,{
+         'Content-type':'text/html'
+     });
      var params="";
      request.on('data',function(part){
          params+=part;
      });
      request.on('end',function(){
          console.log(params);
+         var obj=querystring.parse(params);
+         if(obj.username=='xinya'&&obj.password=='751025'){
+            response.write('Welcome:${obj.username}');
+         }
+         else{
+            response.write('Username or password is not correct!')
+         }
      })
 }
